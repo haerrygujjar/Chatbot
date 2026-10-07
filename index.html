@@ -1,42 +1,143 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8f8f5"><title>Groundwork — Knowledge chat</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="shell">
-    <aside class="sidebar">
-      <a class="brand" href="#"><span class="brand-mark">g.</span><span>groundwork</span></a>
-      <div class="side-label">YOUR SPACE</div>
-      <button class="nav-item active"><span class="nav-icon">◈</span> Knowledge chat <span class="nav-dot"></span></button>
-      <div class="side-label kb-label">KNOWLEDGE BASE <span id="doc-count" class="count">0</span></div>
-      <div id="document-list" class="document-list"></div>
-      <button id="upload-trigger" class="add-doc"><span>＋</span> Add documents</button>
-      <div class="sidebar-bottom"><div class="local-indicator"><span class="pulse"></span><div><strong>Private by design</strong><small>Runs on your machine</small></div></div><div class="sidebar-foot">YOUR DATA STAYS YOURS <span>↗</span></div></div>
-    </aside>
-    <main class="main">
-      <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong>Knowledge chat</strong></div><div id="model-status" class="model-status"><span class="status-dot"></span><span>Checking local models…</span></div></header>
-      <section class="chat-layout">
-        <div id="welcome" class="welcome">
-          <div class="eyebrow"><span class="spark">✳</span> YOUR KNOWLEDGE, IN CONVERSATION</div>
-          <h1>Good ideas start<br>with <em>good questions.</em></h1>
-          <p class="welcome-copy">Add your documents, then ask anything. Your answers stay grounded in what you’ve shared.</p>
-          <div class="welcome-actions"><button id="welcome-upload" class="primary-btn">＋ &nbsp; Add your first document</button><span>TXT &nbsp;·&nbsp; MD</span></div>
-          <div class="prompt-label">A FEW PLACES TO START</div>
-          <div class="suggestions"><button class="suggestion">What are the key takeaways? <span>↗</span></button><button class="suggestion">Summarize this for me <span>↗</span></button><button class="suggestion">What should I know? <span>↗</span></button></div>
-          <div class="welcome-note"><span class="note-icon">✳</span><span><strong>Grounded in your files.</strong> Every answer comes with sources, so you can always check the details.</span></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f8f5" />
+    <title>Groundwork — Knowledge chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <a class="brand" href="#">
+          <span class="brand-mark">g.</span>
+          <span>groundwork</span>
+        </a>
+        <div class="side-label">YOUR SPACE</div>
+        <button class="nav-item active">
+          <span class="nav-icon">◈</span>
+          Knowledge chat
+          <span class="nav-dot"></span>
+        </button>
+        <div class="side-label kb-label">
+          KNOWLEDGE BASE
+          <span id="doc-count" class="count">0</span>
         </div>
-        <div id="conversation" class="conversation hidden"></div>
-        <div class="composer-wrap"><form id="chat-form" class="composer"><textarea id="message" rows="1" placeholder="Ask a question about your documents…" aria-label="Message"></textarea><div class="composer-footer"><div class="composer-hint"><span class="mini-spark">✳</span> Answers grounded in your knowledge base</div><button id="send" class="send-btn" type="submit" aria-label="Send message">↑</button></div></form><div class="disclaimer">Groundwork can make mistakes. Check important details against the source.</div></div>
-      </section>
-    </main>
-  </div>
-  <input id="file-input" type="file" accept=".txt,.md,.markdown,text/plain,text/markdown" multiple hidden>
-  <div id="toast" class="toast" role="status"></div>
-  <script src="app.js"></script>
-</body>
+        <div id="document-list" class="document-list"></div>
+        <button id="upload-trigger" class="add-doc">
+          <span>＋</span> Add documents
+        </button>
+        <div class="sidebar-bottom">
+          <div class="local-indicator">
+            <span class="pulse"></span>
+            <div>
+              <strong>Private by design</strong>
+              <small>Runs on your machine</small>
+            </div>
+          </div>
+          <div class="sidebar-foot">
+            YOUR DATA STAYS YOURS <span>↗</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumb">
+            Workspace <span>/</span> <strong>Knowledge chat</strong>
+          </div>
+          <div id="model-status" class="model-status">
+            <span class="status-dot"></span>
+            <span>Checking local models…</span>
+          </div>
+        </header>
+
+        <section class="chat-layout">
+          <div id="welcome" class="welcome">
+            <div class="eyebrow">
+              <span class="spark">✳</span> YOUR KNOWLEDGE, IN CONVERSATION
+            </div>
+            <h1>Good ideas start<br />with <em>good questions.</em></h1>
+            <p class="welcome-copy">
+              Add your documents, then ask anything. Your answers stay grounded
+              in what you’ve shared.
+            </p>
+            <div class="welcome-actions">
+              <button id="welcome-upload" class="primary-btn">
+                ＋ &nbsp; Add your first document
+              </button>
+              <span>TXT &nbsp;·&nbsp; MD</span>
+            </div>
+            <div class="prompt-label">A FEW PLACES TO START</div>
+            <div class="suggestions">
+              <button class="suggestion">
+                What are the key takeaways? <span>↗</span>
+              </button>
+              <button class="suggestion">
+                Summarize this for me <span>↗</span>
+              </button>
+              <button class="suggestion">
+                What should I know? <span>↗</span>
+              </button>
+            </div>
+            <div class="welcome-note">
+              <span class="note-icon">✳</span>
+              <span>
+                <strong>Grounded in your files.</strong> Every answer comes
+                with sources, so you can always check the details.
+              </span>
+            </div>
+          </div>
+
+          <div id="conversation" class="conversation hidden"></div>
+
+          <div class="composer-wrap">
+            <form id="chat-form" class="composer">
+              <textarea
+                id="message"
+                rows="1"
+                placeholder="Ask a question about your documents…"
+                aria-label="Message"
+              ></textarea>
+              <div class="composer-footer">
+                <div class="composer-hint">
+                  <span class="mini-spark">✳</span>
+                  Answers grounded in your knowledge base
+                </div>
+                <button
+                  id="send"
+                  class="send-btn"
+                  type="submit"
+                  aria-label="Send message"
+                >
+                  ↑
+                </button>
+              </div>
+            </form>
+            <div class="disclaimer">
+              Groundwork can make mistakes. Check important details against the
+              source.
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <input
+      id="file-input"
+      type="file"
+      accept=".txt,.md,.markdown,text/plain,text/markdown"
+      multiple
+      hidden
+    />
+    <div id="toast" class="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
 </html>

@@ -1,4 +1,3 @@
-"""Small local RAG API backed by Ollama and a JSON knowledge store."""
 from __future__ import annotations
 
 import json
@@ -70,6 +69,7 @@ def chunks_for(text: str, size: int = 900, overlap: int = 140) -> list[str]:
     while start < len(text):
         end = min(start + size, len(text))
         if end < len(text):
+            # Keep chunks connected.
             boundary = text.rfind(" ", start + size // 2, end)
             if boundary > start:
                 end = boundary
